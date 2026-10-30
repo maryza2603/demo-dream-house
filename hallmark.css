@@ -1,0 +1,66 @@
+/* Hallmark · macrostructure: Marquee Hero (фото-полоса, карточки под ней) · theme: custom (графит, меловой, аква) · anchor hue: аква */
+:root {
+  --c-canvas: #111416; --c-surface: #1a1e21; --c-ink: #f1f2ee; --c-ink-soft: #a3aaa6;
+  --c-accent: #7fd6c8; --c-accent-ink: #0b1a17; --c-accent-deep: #7fd6c8;
+  --f-display: "Montserrat", "Segoe UI", system-ui, sans-serif; --f-text: "Inter", "Segoe UI", system-ui, sans-serif;
+  --hair: rgba(241, 242, 238, .16); --r: 2px; --tint: #1f2a28; --shadow: 0 30px 60px -30px #000; --h1k: 1;
+}
+body { font-family: var(--f-text); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; letter-spacing: -.02em; line-height: 1.08; }
+.s-btn { border-radius: 2px; text-transform: uppercase; letter-spacing: .06em; font-size: .82rem; }
+.s-btn--ghost { border-color: var(--hair); }
+.s-bar { background: color-mix(in srgb, var(--c-canvas) 80%, transparent); border-bottom: 1px solid var(--hair); }
+.s-bar__brand { text-transform: uppercase; letter-spacing: .18em; font-size: .85rem; }
+.s-bar__brand i { border-radius: 0; width: 1.6em; height: 2px; background: var(--c-accent); }
+
+/* первый экран: фото чистой полосой на всю ширину, текст и запись - снизу, внахлёст */
+.s-hero { padding-top: clamp(260px, 44vh, 480px); column-gap: clamp(28px, 5vw, 72px); }
+.s-hero__bg { top: 64px; height: clamp(300px, 52vh, 560px); }
+.s-hero__bg img { opacity: 1; filter: none; }
+.s-hero__bg::after { background: linear-gradient(180deg, transparent 55%, var(--c-canvas)); }
+.s-hero__text { background: var(--c-surface); padding: clamp(24px, 3.5vw, 44px); border-top: 3px solid var(--c-accent); margin-top: -64px; position: relative; }
+.s-eyebrow { color: var(--c-accent); letter-spacing: .2em; font-size: .72rem; }
+.s-hero h1 { font-size: clamp(1.9rem, 3.8vw, 3.1rem); text-transform: none; }
+.s-lead { color: var(--c-ink-soft); }
+.s-ticks li::before { border-radius: 0; width: 14px; height: 2px; top: .7em; background: var(--c-accent); }
+.s-ticks li::after { display: none; }
+.s-ticks li { padding-left: 28px; font-weight: 500; }
+.s-hero__photo { display: none; }
+.s-hero__widget { top: 80px; margin-top: -64px; }
+.s-widget { border-radius: 2px; border: 1px solid var(--hair); background: var(--c-surface); }
+.s-chip { border-radius: 2px; }
+.s-chip:has(input:checked) { background: rgba(127, 214, 200, .12); }
+.s-bubble { border-radius: 2px; margin-left: 0; background: var(--c-canvas); }
+
+/* секции: нумерованные строки, большие пробелы, почти нет рамок */
+.s-section { padding-top: clamp(80px, 11vw, 140px); }
+.s-section__head h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); }
+.s-board__title { color: var(--c-accent); }
+.s-board__row { border-bottom-color: var(--hair); }
+.s-board__price { color: var(--c-ink); }
+.s-board__name em { color: var(--c-ink-soft); }
+.s-incl > div { background: var(--c-surface); border-radius: 2px; }
+.s-steps { grid-template-columns: 1fr; gap: 0; }
+.s-steps__item { display: grid; grid-template-columns: 96px minmax(0, 0.9fr) minmax(0, 1.2fr); align-items: baseline; gap: 8px 32px; background: transparent; border: 0; border-top: 1px solid var(--hair); border-radius: 0; padding: 28px 0; }
+.s-steps__n { width: auto; height: auto; background: none; color: var(--c-accent); border-radius: 0; font: 300 3rem/1 var(--f-display); }
+.s-steps h3, .s-steps p { margin: 0; }
+.s-photos { grid-template-columns: 1.6fr 1fr 1fr; align-items: stretch; gap: 3px; }
+.s-photos img { border-radius: 0; aspect-ratio: 3 / 4; height: 100%; }
+.s-photos figure:first-child img { aspect-ratio: auto; }
+.s-promises { gap: 1px; background: var(--hair); border: 1px solid var(--hair); }
+.s-promises li { background: var(--c-canvas); border: 0; border-radius: 0; padding: 30px 26px; }
+.s-promises h3 { color: var(--c-accent); font-size: 1rem; text-transform: uppercase; letter-spacing: .08em; }
+.s-reviews li { background: var(--c-surface); border: 0; border-top: 2px solid var(--c-accent); border-radius: 0; }
+.s-faq details { background: transparent; border: 0; border-top: 1px solid var(--hair); border-radius: 0; }
+.s-contacts { background: var(--c-surface); border-radius: 2px; border: 1px solid var(--hair); }
+.s-foot { border-top-color: var(--hair); }
+.s-dock { background: color-mix(in srgb, var(--c-canvas) 90%, transparent); }
+
+@media (max-width: 960px) {
+  .s-hero { padding-top: 220px; }
+  .s-hero__bg { height: 280px; }
+  .s-hero__widget { margin-top: 0; }
+  .s-steps__item { grid-template-columns: 56px minmax(0, 1fr); }
+  .s-steps p { grid-column: 2; }
+}
+@media (max-width: 640px) { .s-photos { grid-template-columns: 1fr 1fr; } .s-photos figure:first-child { grid-column: 1 / -1; } }
