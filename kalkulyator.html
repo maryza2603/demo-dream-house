@@ -139,13 +139,13 @@ label.ck span.p{margin-left:auto;color:var(--muted);font-size:13px;white-space:n
 
 <script>
 const ROOMS={
- prihozhaya:{n:'Прихожая',c:'#c4c8c6',min:4},
- gostinaya:{n:'Гостиная',c:'#c99a64',min:16},
- kuhnya:{n:'Кухня',c:'#D8B48E',min:8},
- spalnya:{n:'Спальня',c:'#E9D5B5',min:9},
- sanuzel:{n:'Санузел',c:'#C3D7E0',min:3},
- kotelnaya:{n:'Котельная',c:'#A9CBD6',min:3},
- terrasa:{n:'Терраса',c:'#D8B48E',min:4,out:true}
+ prihozhaya:{n:'Прихожая',c:'#b9c4cc',min:4},
+ gostinaya:{n:'Гостиная',c:'#ffb36b',min:16},
+ kuhnya:{n:'Кухня',c:'#ffd27a',min:8},
+ spalnya:{n:'Спальня',c:'#f9e6b4',min:9},
+ sanuzel:{n:'Санузел',c:'#9fe0f2',min:3},
+ kotelnaya:{n:'Котельная',c:'#7fd6c8',min:3},
+ terrasa:{n:'Терраса',c:'#ebbf90',min:4,out:true}
 };
 const MAT=[['karkas','Каркас с утеплением','быстро и тепло, обшивка снаружи',28500,'#DDBC8E'],
  ['gaz','Газобетон','прочный, не горит, штукатурка',36000,'#E3DDD0'],
@@ -195,9 +195,9 @@ function drawPlan(){const P=1.2,H=S.W+3;plan.innerHTML='';plan.setAttribute('vie
  S.rooms.forEach((r,i)=>{const m=ROOMS[r.t],g=el('g',{},plan);
   const re=el('rect',{x:r.x+.04,y:r.y+.04,width:r.w-.08,height:r.h-.08,rx:.08,fill:m.c,stroke:i==sel?'#8f5626':'rgba(0,0,0,.18)','stroke-width':i==sel?.1:.03,style:'cursor:move'},g);
   re.onpointerdown=e=>{sel=i;start(e,i,false);drawPlan();renderList()};
-  const fs=Math.min(.42,r.w/6,(r.w-.2)/(m.n.length*.6));
-  el('text',{x:r.x+r.w/2,y:r.y+r.h/2-fs*.2,'text-anchor':'middle','font-size':fs,'font-family':'IBM Plex Sans','font-weight':700,fill:'#1c2226','pointer-events':'none'},g).textContent=m.n;
-  el('text',{x:r.x+r.w/2,y:r.y+r.h/2+fs*1.1,'text-anchor':'middle','font-size':fs*.85,'font-family':'IBM Plex Sans',fill:'#5a6269','pointer-events':'none'},g).textContent=`${r.w}×${r.h} м · ${r1(r.w*r.h)} м²`;
+  const fs=Math.min(.5,r.w/5.5,(r.w-.35)/(m.n.length*.62));
+  el('text',{x:r.x+r.w/2,y:r.y+r.h/2-fs*.2,'text-anchor':'middle','font-size':fs,'font-family':'IBM Plex Sans','font-weight':800,fill:'#06090b',stroke:'#ffffff','stroke-width':fs*.14,'paint-order':'stroke','pointer-events':'none'},g).textContent=m.n;
+  el('text',{x:r.x+r.w/2,y:r.y+r.h/2+fs*1.1,'text-anchor':'middle','font-size':fs*.66,'font-family':'IBM Plex Sans','font-weight':600,fill:'#1b2125','pointer-events':'none'},g).textContent=`${r.w}×${r.h} м · ${r1(r.w*r.h)} м²`;
   if(i==sel){const h=el('rect',{x:r.x+r.w-.32,y:r.y+r.h-.32,width:.3,height:.3,rx:.06,fill:'#fff',stroke:'#8f5626','stroke-width':.06,style:'cursor:nwse-resize'},g);h.onpointerdown=e=>{e.stopPropagation();start(e,i,true)}}});
  el('rect',{x:0,y:0,width:S.L,height:S.W,fill:'none',stroke:'#1c2226','stroke-width':.18,'pointer-events':'none'},plan);
  el('text',{x:S.L/2,y:-.4,'text-anchor':'middle','font-size':.4,fill:'#5a6269','font-family':'IBM Plex Sans'},plan).textContent=S.L+' м';
